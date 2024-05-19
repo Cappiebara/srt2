@@ -1,0 +1,12 @@
+[package]
+name = "srt2"
+version = "0.1.0"
+edition = "2021"
+authors = ["Madeleine Maria Ilyinichna"]
+license = "BSD-3-Clause"
+description = "Parser for SRT subtitle files"
+keywords = ["srt", "subtitles", "parser"]
+repository = "https://github.com/18-carat/srt2"
+
+[dependencies]
+nom = "7.1.3"
