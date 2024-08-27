@@ -2,7 +2,7 @@
 name = "srt2"
 version = "0.1.0"
 edition = "2021"
-authors = ["Madeleine Maria Ilyinichna"]
+authors = ["18-carat"]
 license = "BSD-3-Clause"
 description = "Parser for SRT subtitle files"
 keywords = ["srt", "subtitles", "parser"]
