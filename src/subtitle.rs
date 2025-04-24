@@ -1,15 +1,17 @@
-use std::fmt::{Display, Formatter, Result};
+use crate::timestamp::Timestamp;
+use alloc::string::String;
+use core::fmt::Display;
 
-#[derive(Debug, PartialEq)]
+#[derive(Clone)]
 pub struct Subtitle {
-    pub index: usize,
-    pub start: u32,
-    pub end: u32,
+    index: usize,
+    start: Timestamp,
+    end: Timestamp,
     pub text: String,
 }
 
 impl Subtitle {
-    pub fn new(index: usize, start: u32, end: u32, text: String) -> Self {
+    pub fn new(index: usize, start: Timestamp, end: Timestamp, text: String) -> Self {
         Self {
             index,
             start,
@@ -20,23 +22,11 @@ impl Subtitle {
 }
 
 impl Display for Subtitle {
-    fn fmt(&self, f: &mut Formatter) -> Result {
-        let timestamp = |time: u32| {
-            let ms = time & 0x3FF;
-            let s = (time >> 10) & 0x3F;
-            let m = (time >> 16) & 0x3F;
-            let h = (time >> 22) & 0xF;
-
-            format!("{:02}:{:02}:{:02},{:03}", h, m, s, ms)
-        };
-
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         write!(
             f,
             "{}\n{} --> {}\n{}\n",
-            self.index,
-            timestamp(self.start),
-            timestamp(self.end),
-            self.text
+            self.index, self.start, self.end, self.text
         )
     }
 }
